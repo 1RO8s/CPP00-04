@@ -1,0 +1,6 @@
+*.o
+settings.json
+# CPP00
+megaphone
+phoneBook
+account
