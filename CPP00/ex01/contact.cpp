@@ -6,15 +6,13 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 16:42:58 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/26 16:56:29 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/26 21:15:07 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
 
-
 Contact::Contact()
-    // : _id(0), _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {
     : _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {
     std::cout << "Contact object created" << std::endl;
 }
@@ -22,14 +20,6 @@ Contact::Contact()
 Contact::~Contact() {
     std::cout << "Contact object destroyed" << std::endl;
 }
-
-// void Contact::setId(int id) {
-//     this->_id = id;
-// }
-
-// int Contact::getId() {
-//     return this->_id;
-// }
 
 void Contact::setFirstName(std::string firstName) {
     this->_firstName = firstName;

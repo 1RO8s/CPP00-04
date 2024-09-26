@@ -6,12 +6,11 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:59:19 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/26 19:14:34 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/26 21:15:33 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phoneBook.hpp"
-
 
 std::string inputCommand() {
     std::string command;
