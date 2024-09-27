@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:47:44 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/26 21:16:25 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/28 00:36:01 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void PhoneBook::_putRow(int index, Contact& contact) {
 
 int PhoneBook::_inputIndex() {
     int id = 0;
-    std::stringstream ss;
     std::string str;
 
     while (true) {
@@ -82,6 +81,7 @@ int PhoneBook::_inputIndex() {
             std::cout << "EOF detected. Exiting the program." << std::endl;
             std::exit(EXIT_SUCCESS);
         }
+        std::stringstream ss;
         ss << str;
         if (ss >> id) {
             break;
