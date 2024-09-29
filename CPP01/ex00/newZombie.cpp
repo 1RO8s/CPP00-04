@@ -12,6 +12,8 @@
 
 #include "Zombie.hpp"
 
+#include <cstdlib>
+
 Zombie* newZombie(std::string name) {
     try {
         Zombie* z = new Zombie(name);
