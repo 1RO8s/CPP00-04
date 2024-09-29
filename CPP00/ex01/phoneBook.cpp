@@ -6,13 +6,13 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:47:44 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/28 00:36:01 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:25:17 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phoneBook.hpp"
 
-PhoneBook::PhoneBook() : _totalContacts(0)
+PhoneBook::PhoneBook() : _nextIndex(0)
 {
   std::cout << "PhoneBook object created" << std::endl;
 }
@@ -36,21 +36,21 @@ std::string PhoneBook::_inputString(const std::string &msg)
 
 void PhoneBook::add()
 {
-  int id;
+  int idx;
 
   std::string input;
-  id = this->_totalContacts % CONTACT_NUM_MAX;
-  this->_totalContacts++;
+  idx = this->_nextIndex;
   std::string firstName = this->_inputString("Please enter First Name\t\t: ");
   std::string lastName = this->_inputString("Please enter Last Name\t\t: ");
   std::string nickname = this->_inputString("Please enter Nickname\t\t: ");
   std::string phoneNumber = this->_inputString("Please enter PhoneNumber\t: ");
   std::string darkestSecret = this->_inputString("Please enter DarkestSecret\t: ");
-  this->_contacts[id].setFirstName(firstName);
-  this->_contacts[id].setLastName(lastName);
-  this->_contacts[id].setNickname(nickname);
-  this->_contacts[id].setPhoneNumber(phoneNumber);
-  this->_contacts[id].setDarkestSecret(darkestSecret);
+  this->_contacts[idx].setFirstName(firstName);
+  this->_contacts[idx].setLastName(lastName);
+  this->_contacts[idx].setNickname(nickname);
+  this->_contacts[idx].setPhoneNumber(phoneNumber);
+  this->_contacts[idx].setDarkestSecret(darkestSecret);
+  this->_nextIndex = (this->_nextIndex + 1) % CONTACT_NUM_MAX;
 }
 
 std::string PhoneBook::_truncateString(const std::string& str, size_t maxLen) {
@@ -71,7 +71,7 @@ void PhoneBook::_putRow(int index, Contact& contact) {
 }
 
 int PhoneBook::_inputIndex() {
-    int id = 0;
+    int idx = 0;
     std::string str;
 
     while (true) {
@@ -83,24 +83,19 @@ int PhoneBook::_inputIndex() {
         }
         std::stringstream ss;
         ss << str;
-        if (ss >> id) {
+        if (ss >> idx) {
             break;
         } else {
             std::cout << "Invalid input. Please enter a valid number." << std::endl;
         }
     }
-    return id;
+    return idx;
 }
 
 
 
 void PhoneBook::search()
 {
-  if (this->_totalContacts == 0)
-  {
-    std::cout << "There are no contacts in the phone book." << std::endl;
-    return;
-  }
   std::cout << std::setw(10) << std::right << "index"
             << "|";
   std::cout << std::setw(10) << std::right << "first name"
@@ -110,7 +105,8 @@ void PhoneBook::search()
   std::cout << std::setw(10) << std::right << "nickname"
             << "|";
   std::cout << std::endl;
-  for (int i = 0; i < this->_totalContacts; i++)
+  
+  for (int i = 0; i < CONTACT_NUM_MAX; i++)
   {
     this->_putRow(i,this->_contacts[i]);
   }
@@ -118,7 +114,8 @@ void PhoneBook::search()
   while (true)
   {
     int targetIndex = this->_inputIndex();
-    if (targetIndex >= 0 && targetIndex < this->_totalContacts)
+    
+    if (targetIndex >= 0 && targetIndex < CONTACT_NUM_MAX)
     {
       this->_putContact(this->_contacts[targetIndex]);
       break;

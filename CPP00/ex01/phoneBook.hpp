@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:45:37 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/29 16:24:27 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:25:25 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class PhoneBook {
     void _putRow(int index, Contact& contact); 
     int _inputIndex();
     
-		int _totalContacts;
+    int _nextIndex;
 		Contact _contacts[CONTACT_NUM_MAX];
     std::string _inputString(const std::string& msg);
   
