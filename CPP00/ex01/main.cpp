@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:59:19 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/26 21:15:33 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:48:20 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ std::string inputCommand() {
     std::string command;
     std::cout << "Enter the command (ADD, SEARCH, EXIT): ";
     std::getline(std::cin, command);
+    if (std::cin.eof())
+        std::exit(EXIT_SUCCESS);
     return command;
 }
 

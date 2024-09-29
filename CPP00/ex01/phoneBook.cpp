@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:47:44 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/29 17:25:17 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:48:13 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ std::string PhoneBook::_inputString(const std::string &msg)
   std::cout << msg;
   while (input.empty())
   {
-    if (std::getline(std::cin, input).eof())
-      std::exit(0);
+    std::getline(std::cin, input);
+    if(std::cin.eof())
+      std::exit(EXIT_SUCCESS);
   }
   return (input);
 }
@@ -77,10 +78,8 @@ int PhoneBook::_inputIndex() {
     while (true) {
         std::cout << "Enter the index of the contact: ";
         std::getline(std::cin, str);
-        if (std::cin.eof()) {
-            std::cout << "EOF detected. Exiting the program." << std::endl;
-            std::exit(EXIT_SUCCESS);
-        }
+        if (std::cin.eof())
+            std::exit(EXIT_SUCCESS);        
         std::stringstream ss;
         ss << str;
         if (ss >> idx) {
