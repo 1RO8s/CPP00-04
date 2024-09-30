@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:47:44 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/29 17:48:13 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:38:49 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ std::string PhoneBook::_truncateString(const std::string& str, size_t maxLen) {
 
 void PhoneBook::_putRow(int index, Contact& contact) {
     std::cout << std::setw(10) << std::right << index << "|";
-    std::cout << std::setw(10) << std::right << _truncateString(contact.getFirstName(),9) << "|";
-    std::cout << std::setw(10) << std::right << _truncateString(contact.getLastName(),9) << "|";
-    std::cout << std::setw(10) << std::right << _truncateString(contact.getNickname(),9) << "|";
+    std::cout << std::setw(10) << std::right << _truncateString(contact.getFirstName(),10) << "|";
+    std::cout << std::setw(10) << std::right << _truncateString(contact.getLastName(),10) << "|";
+    std::cout << std::setw(10) << std::right << _truncateString(contact.getNickname(),10) << "|";
     std::cout << std::endl;
 }
 
