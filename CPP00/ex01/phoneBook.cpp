@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:47:44 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/30 20:51:44 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:00:15 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,20 @@ int PhoneBook::_inputIndex() {
   std::string str;
 
   while (true) {
-        std::cout << "Enter the index of the contact: ";
-        std::getline(std::cin, str);
-        if (std::cin.eof())
-            std::exit(EXIT_SUCCESS);        
-        std::stringstream ss;
-        ss << str;
-        if (ss >> idx) {
-            break;
-        } else {
-            std::cout << "Invalid input. Please enter a valid number." << std::endl;
-        }
+    std::cout << "Enter the index of the contact: ";
+    std::getline(std::cin, str);
+    if (std::cin.eof())
+      std::exit(EXIT_SUCCESS);   
+         
+    std::stringstream ss;
+    ss << str;
+    if (ss >> idx) {
+      break;
+    } else {
+      std::cout << "Invalid input. Please enter a valid number." << std::endl;
     }
-    return idx;
+  }
+  return idx;
 }
 
 
