@@ -6,14 +6,13 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 16:42:58 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/26 21:15:07 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:49:05 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
 
-Contact::Contact()
-    : _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {
+Contact::Contact(): _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {
     std::cout << "Contact object created" << std::endl;
 }
 

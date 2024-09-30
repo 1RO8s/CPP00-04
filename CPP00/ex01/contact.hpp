@@ -6,7 +6,7 @@
 /*   By: hnagasak <hnagasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:55:57 by hnagasak          #+#    #+#             */
-/*   Updated: 2024/09/26 21:15:59 by hnagasak         ###   ########.fr       */
+/*   Updated: 2024/09/30 20:42:14 by hnagasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include <iostream>
 #include <string>
 
-class Contact
-{
+class Contact {
 private:
   std::string _firstName;
   std::string _lastName;
