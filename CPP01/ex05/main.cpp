@@ -1,25 +1,5 @@
 #include "Harl.hpp"
 
-// int main(int argc, char **argv) {
-//   if (argc > 2) {
-//     std::cout << "Too many arguments." << std::endl;
-//     return (EXIT_FAILURE);
-//   }
-//   try {
-//     Harl harl;
-//     if (argc == 2) {
-//       harl.complain(static_cast<std::string>(argv[1]));
-//     } 
-//     // else {
-//     //   harl.complain("SSSS");
-//     // }
-//     return (EXIT_SUCCESS);
-//   } catch (const std::exception& e) {
-//     std::cout << "An error occurred." << std::endl;
-//     return (EXIT_FAILURE);
-//   }
-// }
-
 int main(void) {
   Harl harl;
   try {
