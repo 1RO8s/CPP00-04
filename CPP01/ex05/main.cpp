@@ -1,4 +1,5 @@
 #include "Harl.hpp"
+#include <cstdlib>
 
 int main(void) {
   Harl harl;

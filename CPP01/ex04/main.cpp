@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 int is_invalid_parameters(int argc, char **argv) {
   if (argc != 4) {
