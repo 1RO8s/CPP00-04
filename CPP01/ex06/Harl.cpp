@@ -61,9 +61,8 @@ void Harl::complain(std::string level) {
   case ERROR:
     (this->*_logFunctions[ERROR])();
     break;
-  case INVALID:
-    (this->*_logFunctions[INVALID])();
   default:
+    (this->*_logFunctions[INVALID])();
     break;
   }
 }
