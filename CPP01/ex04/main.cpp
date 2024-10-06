@@ -28,22 +28,22 @@ std::string replaceString(const std::string& str, const std::string& s1, const s
     return result;
 }
 
-std::ifstream openFile(const std::string& fileName) {
-    std::ifstream file(fileName);
+int openFile(std::ifstream &file, const std::string& fileName) {
+    file.open(fileName.c_str());
     if (!file) {
         std::cerr << "file could not be opened: " << fileName << std::endl;
         std::exit(EXIT_FAILURE);
     }
-    return file;
+    return 0;
 }
 
-std::ofstream createFile(const std::string& fileName) {
-    std::ofstream file(fileName);
+int createFile(std::ofstream &file, const std::string& fileName) {
+    file.open(fileName.c_str());
     if (!file) {
         std::cerr << "file could not be created: " << fileName << std::endl;
         std::exit(EXIT_FAILURE);
     }
-    return file;
+    return 0;
 }
 
 int main(int argc, char **argv) {
@@ -55,8 +55,10 @@ int main(int argc, char **argv) {
     std::string s1 = argv[2];
     std::string s2 = argv[3];
     
-    std::ifstream inputFile = openFile(fileName);
-    std::ofstream outputFile = createFile(fileName + ".replace");
+    std::ifstream inputFile;
+    openFile(inputFile, fileName);
+    std::ofstream outputFile;
+    createFile(outputFile, fileName + ".replace");
 
     std::string line;
     while (std::getline(inputFile, line)) {
