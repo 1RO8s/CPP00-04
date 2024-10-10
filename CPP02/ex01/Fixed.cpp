@@ -21,7 +21,7 @@ Fixed::Fixed(const float num) {
     this->_rawBits = roundf(num * (1 << Fixed::FRACTIONAL_BITS));
 }
 
-Fixed& Fixed::operator=(const Fixed& other) {
+Fixed &Fixed::operator=(const Fixed& other) {
     std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other) {
         this->_rawBits = other.getRawBits();
@@ -47,7 +47,7 @@ std::ostream& operator<<(std::ostream& ostream, const Fixed& fixed) {
 }
 
 float Fixed::toFloat() const {
-    return (float)this->_rawBits / (1 << Fixed::FRACTIONAL_BITS);
+    return (this->_rawBits / static_cast<float>(1 << Fixed::FRACTIONAL_BITS));
 }
 
 int Fixed::toInt() const {

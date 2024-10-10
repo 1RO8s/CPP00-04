@@ -22,3 +22,11 @@ int main(void) {
     
     return 0;
 }
+
+// ビット数を確認
+// #include <climits>
+// int main() {
+//     std::cout << "int is " << sizeof(int) * CHAR_BIT << " bits.\n";
+//     std::cout << "float is " << sizeof(float) * CHAR_BIT << " bits.\n"; 
+//     return 0;
+// }
