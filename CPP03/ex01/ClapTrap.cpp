@@ -40,19 +40,19 @@ void ClapTrap::attack(const std::string &target) {
 		std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 		--this->_energyPoints;
 	} else {
-		std::cout << "ClapTrap " << this->_name << " is out of energy and cannot attack!" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " has no energy and cannot attack!" << std::endl;
 	}
 }
 
-void ClapTrap::takeDamage(unsigned int amount) {
+void ClapTrap::takeDamage(unsigned int damage) {
 	if (this->_isActionable()) {
-		std::cout << "ClapTrap " << this->_name << " takes " << amount << " points of damage! Ouch!" << std::endl;
-		if (amount > this->_hitPoints)
+		std::cout << "ClapTrap " << this->_name << " takes " << damage << " points of damage! Ouch!" << std::endl;
+		if (damage > this->_hitPoints)
 			this->_hitPoints = 0;
 		else
-			this->_hitPoints -= amount;
+			this->_hitPoints -= damage;
 	} else {
-		std::cout << "ClapTrap " << this->_name << " is out of energy and cannot takeDamage!" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " has no energy and cannot takeDamage!" << std::endl;
 	}
 }
 
@@ -62,7 +62,7 @@ void ClapTrap::beRepaired(unsigned int repairPoints) {
 		this->_energyPoints--;
 			this->_hitPoints += repairPoints;
 	} else {
-		std::cout << "ClapTrap " << this->_name << " is out of energy and cannot beRepaired!" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " has no energy and cannot beRepaired!" << std::endl;
 	}
 }
 
