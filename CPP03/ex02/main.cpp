@@ -1,5 +1,6 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 #include <cassert>
 
 void info(const std::string &str) {
@@ -127,9 +128,52 @@ void testScavTrap() {
     defaultScavTrap.setName("defaultScavTrap");
 }
 
+void testFragTrap() {
+    // コンストラクタのテスト
+    info("###### Test: FragTrap ######");
+    info("--- Test: Constructor ---");
+    FragTrap defaultFragTrap;
+    FragTrap namedFragTrap("HighFiveBot");
+
+    // ClapTrapと異なる初期値が設定されているか確認
+    info("--- Test: Default values ---");
+    std::cout << "namedFragTrap: " << namedFragTrap << std::endl;
+    assert(namedFragTrap.getHitPoints() == 100);  // デフォルトのヒットポイント
+    assert(namedFragTrap.getEnergyPoints() == 100);  // デフォルトのエナジーポイント
+    assert(namedFragTrap.getAttackDamage() == 30);  // デフォルトの攻撃ダメージ
+
+    // FragTrap のメソッドをテスト
+    info("--- Test: highFivesGuys ---");
+    namedFragTrap.highFivesGuys();
+
+    // コピーコンストラクタのテスト
+    info("--- Test: Copy Constructor ---");
+    FragTrap copyFragTrap(namedFragTrap);
+    assert(copyFragTrap.getName() == namedFragTrap.getName());
+    assert(copyFragTrap.getHitPoints() == namedFragTrap.getHitPoints());
+    assert(copyFragTrap.getEnergyPoints() == namedFragTrap.getEnergyPoints());
+    assert(copyFragTrap.getAttackDamage() == namedFragTrap.getAttackDamage());
+    
+    // コピー代入演算子のテスト
+    info("--- Test: Copy Assignment Operator ---");
+    FragTrap assignedFragTrap;
+    assignedFragTrap = namedFragTrap;
+    assert(assignedFragTrap.getName() == namedFragTrap.getName());
+    assert(assignedFragTrap.getHitPoints() == namedFragTrap.getHitPoints());
+    assert(assignedFragTrap.getEnergyPoints() == namedFragTrap.getEnergyPoints());
+    assert(assignedFragTrap.getAttackDamage() == namedFragTrap.getAttackDamage());
+
+    info("--- Test: Destructor ---");
+    assignedFragTrap.setName("assignedFragTrap");
+    copyFragTrap.setName("copyFragTrap");
+    namedFragTrap.setName("namedFragTrap");
+    defaultFragTrap.setName("defaultFragTrap");
+}
+
 int main() {
     testClapTrap();
     testScavTrap();
+    testFragTrap();
     std::cout << "\033[3;32m----- All tests passed! -----\033[0m" << std::endl;
     return 0;
 }
