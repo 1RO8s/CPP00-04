@@ -1,12 +1,17 @@
 #include "ScavTrap.hpp"
 
-
 ScavTrap::ScavTrap() : ClapTrap() {
 	std::cout << "ScavTrap is created" << std::endl;
+	this->setHitPoints(ScavTrap::MAX_HIT_POINTS);
+	this->setEnergyPoints(ScavTrap::MAX_ENERGY_POINTS);
+	this->setAttackDamage(ScavTrap::ATTACK_DAMAGE);
 }
 
 ScavTrap::ScavTrap(const std::string name) : ClapTrap(name) {
 	std::cout << "ScavTrap(" << this->getName() << ") is created." << std::endl;
+	this->setHitPoints(ScavTrap::MAX_HIT_POINTS);
+	this->setEnergyPoints(ScavTrap::MAX_ENERGY_POINTS);
+	this->setAttackDamage(ScavTrap::ATTACK_DAMAGE);
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other) {
