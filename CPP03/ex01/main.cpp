@@ -1,5 +1,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+
+
 #include <cassert>
 
 void info(const std::string &str) {
@@ -77,6 +79,13 @@ void testScavTrap() {
     info("--- Test: Constructor ---");
     ScavTrap defaultScavTrap;
     ScavTrap namedScavTrap("GuardBot");
+
+    // ClapTrapと異なる初期値が設定されているか確認
+    info("--- Test: Default values ---");
+    std::cout << "namedScavTrap: " << namedScavTrap << std::endl;
+    assert(namedScavTrap.getHitPoints() == 100);
+    assert(namedScavTrap.getEnergyPoints() == 50);
+    assert(namedScavTrap.getAttackDamage() == 20);
 
     // ClapTrap から継承されたsetter/getterのテスト
     info("--- Test: Inherited setter/getter ---");

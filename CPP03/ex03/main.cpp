@@ -1,6 +1,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 #include <cassert>
 
 void info(const std::string &str) {
@@ -79,6 +80,13 @@ void testScavTrap() {
     ScavTrap defaultScavTrap;
     ScavTrap namedScavTrap("GuardBot");
 
+    // ClapTrapと異なる初期値が設定されているか確認
+    info("--- Test: Default values ---");
+    std::cout << "namedScavTrap: " << namedScavTrap << std::endl;
+    assert(namedScavTrap.getHitPoints() == 100);
+    assert(namedScavTrap.getEnergyPoints() == 50);
+    assert(namedScavTrap.getAttackDamage() == 20);
+
     // ClapTrap から継承されたsetter/getterのテスト
     info("--- Test: Inherited setter/getter ---");
     namedScavTrap.setHitPoints(100);
@@ -138,9 +146,9 @@ void testFragTrap() {
     // ClapTrapと異なる初期値が設定されているか確認
     info("--- Test: Default values ---");
     std::cout << "namedFragTrap: " << namedFragTrap << std::endl;
-    assert(namedFragTrap.getHitPoints() == 100);  // デフォルトのヒットポイント
-    assert(namedFragTrap.getEnergyPoints() == 100);  // デフォルトのエナジーポイント
-    assert(namedFragTrap.getAttackDamage() == 30);  // デフォルトの攻撃ダメージ
+    assert(namedFragTrap.getHitPoints() == 100);
+    assert(namedFragTrap.getEnergyPoints() == 100);
+    assert(namedFragTrap.getAttackDamage() == 30);
 
     // FragTrap のメソッドをテスト
     info("--- Test: highFivesGuys ---");
