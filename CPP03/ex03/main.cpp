@@ -184,10 +184,53 @@ void testFragTrap() {
     defaultFragTrap.setName("defaultFragTrap");
 }
 
+void testDiamondTrap(){
+    // コンストラクタのテスト
+    info("###### Test: DiamondTrap ######");
+    info("--- Test: Constructor ---");
+    DiamondTrap defaultDiamondTrap;
+    DiamondTrap namedDiamondTrap("DiamondBot");
+
+    // ClapTrapと異なる初期値が設定されているか確認
+    info("--- Test: Default values ---");
+    std::cout << "namedDiamondTrap: " << namedDiamondTrap << std::endl;
+    assert(namedDiamondTrap.getHitPoints() == FragTrap::MAX_HIT_POINTS);
+    assert(namedDiamondTrap.getEnergyPoints() == ScavTrap::MAX_ENERGY_POINTS);
+    assert(namedDiamondTrap.getAttackDamage() == FragTrap::ATTACK_DAMAGE);
+
+    // FragTrap のメソッドをテスト
+    info("--- Test: whoAmI() ---");
+    namedDiamondTrap.whoAmI();
+
+    // コピーコンストラクタのテスト
+    info("--- Test: Copy Constructor ---");
+    DiamondTrap copyDiamondTrap(namedDiamondTrap);
+    assert(copyDiamondTrap.getName() == namedDiamondTrap.getName());
+    assert(copyDiamondTrap.getHitPoints() == namedDiamondTrap.getHitPoints());
+    assert(copyDiamondTrap.getEnergyPoints() == namedDiamondTrap.getEnergyPoints());
+    assert(copyDiamondTrap.getAttackDamage() == namedDiamondTrap.getAttackDamage());
+    
+    // コピー代入演算子のテスト
+    info("--- Test: Copy Assignment Operator ---");
+    DiamondTrap assignedDiamondTrap;
+    assignedDiamondTrap = namedDiamondTrap;
+    assert(assignedDiamondTrap.getName() == namedDiamondTrap.getName());
+    assert(assignedDiamondTrap.getHitPoints() == namedDiamondTrap.getHitPoints());
+    assert(assignedDiamondTrap.getEnergyPoints() == namedDiamondTrap.getEnergyPoints());
+    assert(assignedDiamondTrap.getAttackDamage() == namedDiamondTrap.getAttackDamage());
+
+    info("--- Test: Destructor ---");
+    assignedDiamondTrap.setName("assignedDiamondTrap");
+    copyDiamondTrap.setName("copyDiamondTrap");
+    namedDiamondTrap.setName("namedDiamondTrap");
+    defaultDiamondTrap.setName("defaultDiamondTrap");
+}
+
 int main() {
     testClapTrap();
     testScavTrap();
     testFragTrap();
+    testDiamondTrap();
     std::cout << "\033[3;32m----- All tests passed! -----\033[0m" << std::endl;
     return 0;
 }
