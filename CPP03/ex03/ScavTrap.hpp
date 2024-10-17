@@ -14,7 +14,6 @@ class ScavTrap: public virtual ClapTrap {
 	  void attack(const std::string &target);
 	  void guardGate();
 	
-	private:
 		static const int MAX_HIT_POINTS = 100;
 		static const int MAX_ENERGY_POINTS = 50;
 		static const int ATTACK_DAMAGE = 20;

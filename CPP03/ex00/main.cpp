@@ -14,6 +14,12 @@ void testClapTrap() {
     info("--- Test: Constructor ---");
     ClapTrap defaultClapTrap;
     ClapTrap namedClapTrap("namedClapTrap");
+
+    info("--- Test: Default values ---");
+    std::cout << "namedClapTrap: " << namedClapTrap << std::endl;
+    assert(namedClapTrap.getHitPoints() == 10);
+    assert(namedClapTrap.getEnergyPoints() == 10);
+    assert(namedClapTrap.getAttackDamage() == 0);
     
     // 名前のゲッターとセッターのテスト
     info("--- Test: getName, setName ---");

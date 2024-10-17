@@ -14,6 +14,12 @@ void testClapTrap() {
     info("--- Test: Constructor ---");
     ClapTrap defaultClapTrap;
     ClapTrap namedClapTrap("namedClapTrap");
+
+    info("--- Test: Default values ---");
+    std::cout << "namedClapTrap: " << namedClapTrap << std::endl;
+    assert(namedClapTrap.getHitPoints() == 10);
+    assert(namedClapTrap.getEnergyPoints() == 10);
+    assert(namedClapTrap.getAttackDamage() == 0);
     
     // 名前のゲッターとセッターのテスト
     info("--- Test: getName, setName ---");
@@ -83,9 +89,9 @@ void testScavTrap() {
     // ClapTrapと異なる初期値が設定されているか確認
     info("--- Test: Default values ---");
     std::cout << "namedScavTrap: " << namedScavTrap << std::endl;
-    assert(namedScavTrap.getHitPoints() == 100);
-    assert(namedScavTrap.getEnergyPoints() == 50);
-    assert(namedScavTrap.getAttackDamage() == 20);
+    assert(namedScavTrap.getHitPoints() == ScavTrap::MAX_HIT_POINTS);
+    assert(namedScavTrap.getEnergyPoints() == ScavTrap::MAX_ENERGY_POINTS);
+    assert(namedScavTrap.getAttackDamage() == ScavTrap::ATTACK_DAMAGE);
 
     // ClapTrap から継承されたsetter/getterのテスト
     info("--- Test: Inherited setter/getter ---");
@@ -146,9 +152,9 @@ void testFragTrap() {
     // ClapTrapと異なる初期値が設定されているか確認
     info("--- Test: Default values ---");
     std::cout << "namedFragTrap: " << namedFragTrap << std::endl;
-    assert(namedFragTrap.getHitPoints() == 100);
-    assert(namedFragTrap.getEnergyPoints() == 100);
-    assert(namedFragTrap.getAttackDamage() == 30);
+    assert(namedFragTrap.getHitPoints() == FragTrap::MAX_HIT_POINTS);
+    assert(namedFragTrap.getEnergyPoints() == FragTrap::MAX_ENERGY_POINTS);
+    assert(namedFragTrap.getAttackDamage() == FragTrap::ATTACK_DAMAGE);
 
     // FragTrap のメソッドをテスト
     info("--- Test: highFivesGuys ---");
