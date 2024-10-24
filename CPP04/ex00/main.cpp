@@ -125,7 +125,7 @@ void testCat() {
 }
 
 void testDog() {
-    info("###### Test: Dog ######");
+    info("\n###### Test: Dog ######");
     // コンストラクタのテスト
     info("--- Test: Constructor ---");
     Dog defaultWrong;
@@ -163,7 +163,7 @@ void testDog() {
 }
 
 void testWrongCat() {
-    info("###### Test: WrongCat ######");
+    info("\n###### Test: WrongCat ######");
     // コンストラクタのテスト
     info("--- Test: Constructor ---");
     WrongCat defaultWrong;
@@ -200,12 +200,26 @@ void testWrongCat() {
     defaultWrong.setType("defaultType");
 }
 
+// int main() {
+//     testAnimal();
+//     testWrongAnimal();
+//     testCat();
+//     testDog();
+//     testWrongCat();
+//     std::cout << "\033[3;32m----- All tests passed! -----\033[0m" << std::endl;
+//     return 0;
+// }
+
+// Testing code from subject.pdf
 int main() {
-    testAnimal();
-    testWrongAnimal();
-    testCat();
-    testDog();
-    testWrongCat();
-    std::cout << "\033[3;32m----- All tests passed! -----\033[0m" << std::endl;
+    const Animal* meta = new Animal();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
+    i->makeSound(); //will output the cat sound!
+    j->makeSound();
+    meta->makeSound();
+
     return 0;
 }
