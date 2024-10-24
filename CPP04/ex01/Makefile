@@ -1,5 +1,5 @@
 NAME	= a.out
-SRCS	= main.cpp Animal.cpp WrongAnimal.cpp Dog.cpp Cat.cpp WrongCat.cpp
+SRCS	= main.cpp Animal.cpp WrongAnimal.cpp Dog.cpp Cat.cpp WrongCat.cpp Brain.cpp
 OBJS	= $(SRCS:.cpp=.o)
 CC		= c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors

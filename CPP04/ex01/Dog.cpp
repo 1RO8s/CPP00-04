@@ -14,6 +14,7 @@ Dog::Dog(const Dog& other) {
 Dog& Dog::operator=(const Dog& other) {
     if (this != &other) {
         this->_type = other.getType();
+        Animal::operator=(other);
     }
     std::cout << "Dog(" << this->_type << "): Copy assignment" << std::endl;
     return *this;

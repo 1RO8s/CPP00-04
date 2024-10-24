@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat: public Animal {
    public:
@@ -12,8 +13,6 @@ class Cat: public Animal {
     virtual ~Cat();
 
     void makeSound() const;
-   protected:
-    // const std::string TYPE = "Cat";
 };
 
 #endif
