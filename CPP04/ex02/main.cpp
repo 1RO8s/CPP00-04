@@ -11,41 +11,41 @@ void info(const std::string &str) {
 }
 
 void testAnimal() {
-    info("###### Test: Animal ######");
-    // コンストラクタのテスト
-    info("--- Test: Constructor ---");
-    Animal defaultAnimal;
+    // info("###### Test: Animal ######");
+    // // コンストラクタのテスト
+    // info("--- Test: Constructor ---");
+    // Animal defaultAnimal;
 
-    info("--- Test: Default values ---");
-    // std::cout << "namedClapTrap: " << namedClapTrap << std::endl;
-    // assert(namedClapTrap.getHitPoints() == 10);
-    // assert(namedClapTrap.getEnergyPoints() == 10);
-    // assert(namedClapTrap.getAttackDamage() == 0);
+    // info("--- Test: Default values ---");
+    // // std::cout << "namedClapTrap: " << namedClapTrap << std::endl;
+    // // assert(namedClapTrap.getHitPoints() == 10);
+    // // assert(namedClapTrap.getEnergyPoints() == 10);
+    // // assert(namedClapTrap.getAttackDamage() == 0);
     
-    // setter/getterテスト
-    info("--- Test: setter/getter ---");;
-    defaultAnimal.setType("defaultType");
-    assert(defaultAnimal.getType() == "defaultType");
+    // // setter/getterテスト
+    // info("--- Test: setter/getter ---");;
+    // defaultAnimal.setType("defaultType");
+    // assert(defaultAnimal.getType() == "defaultType");
 
-    // makeSoundのテスト
-    info("--- Test: makeSound ---");
-    defaultAnimal.makeSound();
+    // // makeSoundのテスト
+    // info("--- Test: makeSound ---");
+    // defaultAnimal.makeSound();
 
-    //　コピーコンストラクタのテスト
-    info("--- Test: Copy Constructor ---");
-    Animal copiedAnimal(defaultAnimal);
-    assert(copiedAnimal.getType() == defaultAnimal.getType());
+    // //　コピーコンストラクタのテスト
+    // info("--- Test: Copy Constructor ---");
+    // Animal copiedAnimal(defaultAnimal);
+    // assert(copiedAnimal.getType() == defaultAnimal.getType());
 
-    // コピー代入演算子のテスト
-    info("--- Test: Copy Assignment Operator ---");
-    Animal assignedAnimal;
-    assignedAnimal = defaultAnimal;
-    assert(copiedAnimal.getType() == defaultAnimal.getType());
+    // // コピー代入演算子のテスト
+    // info("--- Test: Copy Assignment Operator ---");
+    // Animal assignedAnimal;
+    // assignedAnimal = defaultAnimal;
+    // assert(copiedAnimal.getType() == defaultAnimal.getType());
 
-    info("--- Test: Destructor ---");
-    assignedAnimal.setType("assignedType");
-    copiedAnimal.setType("copiedType");
-    defaultAnimal.setType("defaultType");
+    // info("--- Test: Destructor ---");
+    // assignedAnimal.setType("assignedType");
+    // copiedAnimal.setType("copiedType");
+    // defaultAnimal.setType("defaultType");
 }
 
 void testWrongAnimal() {
@@ -280,6 +280,9 @@ void testBrain2 () {
 int main() {
     testBrain();
     testBrain2();
+    // 基底クラスがインスタンス化できないこと
+    // Animal animal = Animal(); 
+    
     std::cout << "\033[3;32m----- All tests passed! -----\033[0m" << std::endl;
     return 0;
 }
