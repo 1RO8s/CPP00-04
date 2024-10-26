@@ -25,7 +25,7 @@ class Character : public ICharacter {
   private:
 	std::string name;
 	AMateria *materia[NUM_MATERIA];
-	bool checkIndex(int index) const;
+  bool _isValidIndex(int index) const;
 };
 
 #endif

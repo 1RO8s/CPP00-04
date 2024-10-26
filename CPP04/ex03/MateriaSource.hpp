@@ -2,7 +2,6 @@
 # define MATERIA_SOURCE_H
 
 # include "IMateriaSource.hpp"
-# include <iostream>
 # include <string>
 
 # define NUM_MATERIA 4
@@ -21,7 +20,6 @@ class MateriaSource : public IMateriaSource {
 
   private:
 	  AMateria *materia[NUM_MATERIA];
-	  bool checkIndex(int index) const;
 };
 
 #endif

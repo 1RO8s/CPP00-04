@@ -4,8 +4,6 @@
 #include "AMateria.hpp"
 #include <string>
 
-// #include "Config.hpp"
-
 class AMateria;
 
 class ICharacter {

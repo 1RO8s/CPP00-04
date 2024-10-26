@@ -1,7 +1,7 @@
 #include "Ice.hpp"
 #include <iostream>
 
-Ice::Ice() : AMateria("cure") {
+Ice::Ice() : AMateria("ice") {
     std::cout << "Ice(" << this->getType() << ") is created" << std::endl;
 }
 

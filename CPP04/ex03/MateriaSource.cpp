@@ -1,9 +1,5 @@
 #include "MateriaSource.hpp"
 
-bool MateriaSource::checkIndex(int index) const {
-  return (0 <= index && index < NUM_MATERIA);
-}
-
 MateriaSource::MateriaSource() {
   for (int i = 0; i < NUM_MATERIA; ++i){
     materia[i] = NULL;
@@ -35,7 +31,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& a) {
 }
 
 const AMateria* MateriaSource::getMateria(int index) const {
-  if (!checkIndex(index)) {
+	if (0 <= index && index < NUM_MATERIA) {
     return NULL;
   }
   return materia[index];

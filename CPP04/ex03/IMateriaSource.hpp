@@ -2,11 +2,9 @@
 #define I_MATERIASOURCE_H
 
 #include "AMateria.hpp"
-#include <iostream>
 #include <string>
 
-class IMateriaSource
-{
+class IMateriaSource {
   public:
 	virtual ~IMateriaSource(){}
 	virtual void learnMateria(AMateria *) = 0;
