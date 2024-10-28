@@ -25,16 +25,8 @@ Animal::~Animal() {
     delete this->_brain;
 }
 
-void Animal::makeSound() const {
-    std::cout << "..." << std::endl;
-}
-
 const std::string& Animal::getType() const {
     return this->_type;
-}
-
-void Animal::setType(const std::string& type) {
-    this->_type = type;
 }
 
 std::string Animal::getBrainIdea(int index) const {
