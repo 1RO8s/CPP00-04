@@ -1,5 +1,7 @@
 #include "MateriaSource.hpp"
 
+#include <iostream>
+
 MateriaSource::MateriaSource() {
   for (int i = 0; i < NUM_MATERIA; ++i){
     materia[i] = NULL;
@@ -7,7 +9,8 @@ MateriaSource::MateriaSource() {
 }
 
 MateriaSource::MateriaSource(const MateriaSource& a) {
-    *this = a;
+  *this = a;
+  std::cout << "## MateriaSource: Copy constructor called" << std::endl;
 }
 
 MateriaSource::~MateriaSource() {
@@ -19,9 +22,11 @@ MateriaSource::~MateriaSource() {
 }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& a) {
+  std::cout << "!! MateriaSource: Assignation operator called" << std::endl;
   for (int i = 0; i < NUM_MATERIA; ++i) {
     const AMateria* tmp = a.getMateria(i);
     if (tmp) {
+      // delete materia[i];
       materia[i] = tmp->clone();
     } else {
       materia[i] = NULL;
@@ -32,9 +37,9 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& a) {
 
 const AMateria* MateriaSource::getMateria(int index) const {
 	if (0 <= index && index < NUM_MATERIA) {
-    return NULL;
-  }
-  return materia[index];
+		return materia[index];
+	}
+	return NULL;
 }
 
 void MateriaSource::learnMateria(AMateria* m) {
