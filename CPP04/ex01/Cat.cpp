@@ -7,7 +7,7 @@ Cat::Cat() {
     std::cout << "Cat(" << this->_type << ") is created" << std::endl;
 }
 
-Cat::Cat(const Cat& other) {
+Cat::Cat(const Cat& other): _brain(new Brain(*other._brain)) {
     this->_type = other.getType();
     std::cout << "Cat(" << this->_type << ") is created by copy constructor" << std::endl; 
 }
