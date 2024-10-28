@@ -2,12 +2,12 @@
 #include <iostream>
 
 Cat::Cat() {
-    this->setType("Cat");
+    this->_type = "Cat";
     std::cout << "Cat(" << this->_type << ") is created" << std::endl;
 }
 
 Cat::Cat(const Cat& other) {
-    this->setType(other.getType());
+    this->_type = other.getType();
     std::cout << "Cat(" << this->_type << ") is created by copy constructor" << std::endl; 
 }
 

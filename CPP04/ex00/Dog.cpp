@@ -2,12 +2,12 @@
 #include <iostream>
 
 Dog::Dog() {
-    this->setType("Dog");
+    this->_type = "Dog";
     std::cout << "Dog(" << this->_type << ") is created" << std::endl;
 }
 
 Dog::Dog(const Dog& other) {
-    this->setType(other.getType());
+    this->_type = other.getType();
     std::cout << "Dog(" << this->_type << ") is created by copy constructor" << std::endl; 
 }
 
