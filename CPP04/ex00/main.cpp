@@ -24,8 +24,8 @@ void testAnimal() {
     
     // setter/getterテスト
     info("--- Test: setter/getter ---");;
-    defaultAnimal.setType("defaultType");
-    assert(defaultAnimal.getType() == "defaultType");
+    // defaultAnimal.setType("defaultType");
+    assert(defaultAnimal.getType() == "");
 
     // makeSoundのテスト
     info("--- Test: makeSound ---");
@@ -43,9 +43,9 @@ void testAnimal() {
     assert(copiedAnimal.getType() == defaultAnimal.getType());
 
     info("--- Test: Destructor ---");
-    assignedAnimal.setType("assignedType");
-    copiedAnimal.setType("copiedType");
-    defaultAnimal.setType("defaultType");
+    // assignedAnimal.setType("assignedType");
+    // copiedAnimal.setType("copiedType");
+    // defaultAnimal.setType("defaultType");
 }
 
 void testWrongAnimal() {
@@ -62,7 +62,7 @@ void testWrongAnimal() {
     
     // setter/getterテスト
     info("--- Test: setter/getter ---");;
-    defaultWrong.setType("defaultType");
+    // defaultWrong.setType("defaultType");
     assert(defaultWrong.getType() == "defaultType");
 
     // makeSoundのテスト
@@ -81,16 +81,16 @@ void testWrongAnimal() {
     assert(copiedWrong.getType() == defaultWrong.getType());
 
     info("--- Test: Destructor ---");
-    assignedWrong.setType("assignedType");
-    copiedWrong.setType("copiedType");
-    defaultWrong.setType("defaultType");
+    // assignedWrong.setType("assignedType");
+    // copiedWrong.setType("copiedType");
+    // defaultWrong.setType("defaultType");
 }
 
 void testCat() {
     info("###### Test: Cat ######");
     // コンストラクタのテスト
     info("--- Test: Constructor ---");
-    Cat defaultWrong;
+    Cat defaultCat;
 
     info("--- Test: Default values ---");
     // std::cout << "namedClapTrap: " << namedClapTrap << std::endl;
@@ -100,28 +100,28 @@ void testCat() {
     
     // setter/getterテスト
     info("--- Test: setter/getter ---");;
-    defaultWrong.setType("defaultType");
-    assert(defaultWrong.getType() == "defaultType");
+    // defaultWrong.setType("defaultType");
+    assert(defaultCat.getType() == "Cat");
 
     // makeSoundのテスト
     info("--- Test: makeSound ---");
-    defaultWrong.makeSound();
+    defaultCat.makeSound();
 
     //　コピーコンストラクタのテスト
     info("--- Test: Copy Constructor ---");
-    Cat copiedWrong(defaultWrong);
-    assert(copiedWrong.getType() == defaultWrong.getType());
+    Cat copiedCat(defaultCat);
+    assert(copiedCat.getType() == defaultCat.getType());
 
     // コピー代入演算子のテスト
     info("--- Test: Copy Assignment Operator ---");
-    Cat assignedWrong;
-    assignedWrong = defaultWrong;
-    assert(copiedWrong.getType() == defaultWrong.getType());
+    Cat assignedCat;
+    assignedCat = defaultCat;
+    assert(assignedCat.getType() == defaultCat.getType());
 
     info("--- Test: Destructor ---");
-    assignedWrong.setType("assignedType");
-    copiedWrong.setType("copiedType");
-    defaultWrong.setType("defaultType");
+    // assignedWrong.setType("assignedType");
+    // copiedWrong.setType("copiedType");
+    // defaultWrong.setType("defaultType");
 }
 
 void testDog() {
@@ -138,7 +138,7 @@ void testDog() {
     
     // setter/getterテスト
     info("--- Test: setter/getter ---");;
-    defaultWrong.setType("defaultType");
+    // defaultWrong.setType("defaultType");
     assert(defaultWrong.getType() == "defaultType");
 
     // makeSoundのテスト
@@ -157,9 +157,9 @@ void testDog() {
     assert(copiedWrong.getType() == defaultWrong.getType());
 
     info("--- Test: Destructor ---");
-    assignedWrong.setType("assignedType");
-    copiedWrong.setType("copiedType");
-    defaultWrong.setType("defaultType");
+    // assignedWrong.setType("assignedType");
+    // copiedWrong.setType("copiedType");
+    // defaultWrong.setType("defaultType");
 }
 
 void testWrongCat() {
@@ -176,7 +176,7 @@ void testWrongCat() {
     
     // setter/getterテスト
     info("--- Test: setter/getter ---");;
-    defaultWrong.setType("defaultType");
+    // defaultWrong.setType("defaultType");
     assert(defaultWrong.getType() == "defaultType");
 
     // makeSoundのテスト
@@ -195,9 +195,9 @@ void testWrongCat() {
     assert(copiedWrong.getType() == defaultWrong.getType());
 
     info("--- Test: Destructor ---");
-    assignedWrong.setType("assignedType");
-    copiedWrong.setType("copiedType");
-    defaultWrong.setType("defaultType");
+    // assignedWrong.setType("assignedType");
+    // copiedWrong.setType("copiedType");
+    // defaultWrong.setType("defaultType");
 }
 
 // int main() {
@@ -220,6 +220,12 @@ int main() {
     i->makeSound(); //will output the cat sound!
     j->makeSound();
     meta->makeSound();
+
+    const WrongAnimal* wrongCat1 = new WrongCat();
+    const WrongCat* wrongCat2 = new WrongCat();
+
+    wrongCat1->makeSound();
+    wrongCat2->makeSound();
 
     return 0;
 }
