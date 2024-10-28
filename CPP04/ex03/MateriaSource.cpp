@@ -10,7 +10,6 @@ MateriaSource::MateriaSource() {
 
 MateriaSource::MateriaSource(const MateriaSource& a) {
   *this = a;
-  std::cout << "## MateriaSource: Copy constructor called" << std::endl;
 }
 
 MateriaSource::~MateriaSource() {
@@ -22,11 +21,9 @@ MateriaSource::~MateriaSource() {
 }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& a) {
-  std::cout << "!! MateriaSource: Assignation operator called" << std::endl;
   for (int i = 0; i < NUM_MATERIA; ++i) {
     const AMateria* tmp = a.getMateria(i);
     if (tmp) {
-      // delete materia[i];
       materia[i] = tmp->clone();
     } else {
       materia[i] = NULL;
