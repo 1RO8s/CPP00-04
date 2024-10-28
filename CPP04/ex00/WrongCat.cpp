@@ -2,12 +2,12 @@
 #include <iostream>
 
 WrongCat::WrongCat() {
-    this->setType("WrongCat");
+    this->_type = "WrongCat";
     std::cout << "WrongCat(" << this->_type << ") is created" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat& other) {
-    this->setType(other.getType());
+    this->_type = other.getType();
     std::cout << "WrongCat(" << this->_type << ") is created by copy constructor" << std::endl; 
 }
 

@@ -2,18 +2,16 @@
 #define WRONG_CAT_HPP
 
 #include <string>
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-class WrongCat: public Animal {
+class WrongCat: public WrongAnimal {
    public:
     WrongCat();
     WrongCat(const WrongCat& other);
     WrongCat& operator=(const WrongCat& other);
-    virtual ~WrongCat();
+    ~WrongCat();
 
     void makeSound() const;
-   protected:
-    // const std::string TYPE = "WrongCat";
 };
 
 #endif
