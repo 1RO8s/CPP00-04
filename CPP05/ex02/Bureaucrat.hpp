@@ -5,7 +5,7 @@
 #include <ostream>
 #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
  private:
@@ -30,7 +30,8 @@ class Bureaucrat {
   void decrementGrade();
 
   // Form related
-  void signForm(Form& form);
+  void signForm(AForm& form);
+  void executeForm(const AForm& form) const;
 
   // Exception classes
   class GradeTooHighException : public std::exception {

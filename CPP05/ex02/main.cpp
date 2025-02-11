@@ -2,6 +2,9 @@
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 // 色のための定数
 #define RESET "\033[0m"
@@ -79,6 +82,78 @@ void testFormCopy() {
   std::cout << "\nAfter signing copy:" << std::endl;
   std::cout << "Original: " << std::endl << original << std::endl;
   std::cout << "Copy: " << std::endl << copy << std::endl;
+}
+
+void testShrubberyCreationForm() {
+  std::cout << "\n=== ShrubberyCreationForm Tests ===" << std::endl;
+  try {
+    ShrubberyCreationForm form("garden");
+    Bureaucrat high("High Grade Bob", 1);
+    Bureaucrat low("Low Grade Joe", 150);
+
+    std::cout << form << std::endl;
+    std::cout << "\nTrying to execute without signing:" << std::endl;
+    high.executeForm(form);
+
+    std::cout << "\nTrying to sign with low grade:" << std::endl;
+    low.signForm(form);
+
+    std::cout << "\nSigning with high grade:" << std::endl;
+    high.signForm(form);
+
+    std::cout << "\nTrying to execute with low grade:" << std::endl;
+    low.executeForm(form);
+
+    std::cout << "\nExecuting with high grade:" << std::endl;
+    high.executeForm(form);
+  } catch (std::exception& e) {
+    std::cout << "Exception: " << e.what() << std::endl;
+  }
+}
+
+void testRobotomyRequestForm() {
+  std::cout << "\n=== RobotomyRequestForm Tests ===" << std::endl;
+  try {
+    RobotomyRequestForm form("target");
+    Bureaucrat high("High Grade Bob", 1);
+    Bureaucrat medium("Medium Grade Jim", 50);
+
+    std::cout << form << std::endl;
+    std::cout << "\nSigning with high grade:" << std::endl;
+    high.signForm(form);
+
+    std::cout << "\nExecuting multiple times to test randomness:" << std::endl;
+    for (int i = 0; i < 5; ++i) {
+      std::cout << "\nAttempt " << i + 1 << ":" << std::endl;
+      high.executeForm(form);
+    }
+
+    std::cout << "\nTrying to execute with medium grade:" << std::endl;
+    medium.executeForm(form);
+  } catch (std::exception& e) {
+    std::cout << "Exception: " << e.what() << std::endl;
+  }
+}
+
+void testPresidentialPardonForm() {
+  std::cout << "\n=== PresidentialPardonForm Tests ===" << std::endl;
+  try {
+    PresidentialPardonForm form("criminal");
+    Bureaucrat president("President", 1);
+    Bureaucrat minister("Minister", 20);
+
+    std::cout << form << std::endl;
+    std::cout << "\nTrying to execute without signing:" << std::endl;
+    president.executeForm(form);
+
+    std::cout << "\nSigning with minister:" << std::endl;
+    minister.signForm(form);
+
+    std::cout << "\nExecuting with president:" << std::endl;
+    president.executeForm(form);
+  } catch (std::exception& e) {
+    std::cout << "Exception: " << e.what() << std::endl;
+  }
 }
 
 int main() {
@@ -174,6 +249,9 @@ int main() {
     testFormConstruction();
     testFormSigning();
     testFormCopy();
+    testShrubberyCreationForm();
+    testRobotomyRequestForm();
+    testPresidentialPardonForm();
 
   } catch (const std::exception& e) {
     std::cout << RED << "Unexpected exception: " << e.what() << RESET
