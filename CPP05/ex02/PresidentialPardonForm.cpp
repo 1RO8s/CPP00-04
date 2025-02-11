@@ -26,4 +26,4 @@ void* PresidentialPardonForm::executeAction() const {
   std::cout << target_ << " has been pardoned by Zaphod Beeblebrox."
             << std::endl;
   return NULL;
-} 
+}

@@ -25,4 +25,4 @@ class ShrubberyCreationForm : public AForm {
   const std::string& getTarget() const;
 };
 
-#endif 
+#endif

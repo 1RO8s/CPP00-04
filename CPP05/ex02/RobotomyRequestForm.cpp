@@ -33,4 +33,4 @@ void* RobotomyRequestForm::executeAction() const {
     std::cout << "Robotomization of " << target_ << " failed." << std::endl;
   }
   return NULL;
-} 
+}
