@@ -1,14 +1,14 @@
 NAME = a.out
-SRCS = Bureaucrat.cpp \
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors
+SRCS = main.cpp \
+       Bureaucrat.cpp \
        AForm.cpp \
        ShrubberyCreationForm.cpp \
        RobotomyRequestForm.cpp \
-       PresidentialPardonForm.cpp
-HEADERS = $(SRCS:.cpp=.hpp)
-SRCS += main.cpp
+       PresidentialPardonForm.cpp \
+       Intern.cpp
 OBJS = $(SRCS:.cpp=.o)
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors
 
 all: $(NAME)
 
@@ -16,15 +16,15 @@ $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 clean:
-	$(RM) $(OBJS)
-	$(RM) *_shrubbery
+	rm -f $(OBJS)
+	rm -f *_shrubbery
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
 fmt:
-	clang-format -i $(SRCS) $(HEADERS)
+	clang-format -i $(SRCS)
 
 .PHONY: all clean fclean re fmt

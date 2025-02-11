@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -84,6 +85,53 @@ void testPresidentialPardonForm() {
 
     std::cout << "\nExecuting with president:" << std::endl;
     president.executeForm(form);
+  } catch (std::exception& e) {
+    std::cout << "Exception: " << e.what() << std::endl;
+  }
+}
+
+void testIntern() {
+  std::cout << "\n=== Intern Tests ===" << std::endl;
+
+  Intern someRandomIntern;
+  Bureaucrat president("President", 1);
+
+  // 正常系テスト
+  try {
+    AForm* rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+    std::cout << *rrf << std::endl;
+    president.signForm(*rrf);
+    president.executeForm(*rrf);
+    delete rrf;
+  } catch (std::exception& e) {
+    std::cout << "Exception: " << e.what() << std::endl;
+  }
+
+  // 存在しないフォーム名のテスト
+  try {
+    AForm* form = someRandomIntern.makeForm("not existing", "target");
+    delete form;  // この行は実行されないはず
+  } catch (std::exception& e) {
+    std::cout << "Exception: " << e.what() << std::endl;
+  }
+
+  // 他のフォームのテスト
+  try {
+    AForm* scf = someRandomIntern.makeForm("shrubbery creation", "home");
+    AForm* ppf = someRandomIntern.makeForm("presidential pardon", "criminal");
+
+    std::cout << "\nShrubbery Creation Form:" << std::endl;
+    std::cout << *scf << std::endl;
+    president.signForm(*scf);
+    president.executeForm(*scf);
+
+    std::cout << "\nPresidential Pardon Form:" << std::endl;
+    std::cout << *ppf << std::endl;
+    president.signForm(*ppf);
+    president.executeForm(*ppf);
+
+    delete scf;
+    delete ppf;
   } catch (std::exception& e) {
     std::cout << "Exception: " << e.what() << std::endl;
   }
@@ -182,6 +230,8 @@ int main() {
     testShrubberyCreationForm();
     testRobotomyRequestForm();
     testPresidentialPardonForm();
+
+    testIntern();
 
   } catch (const std::exception& e) {
     std::cout << RED << "Unexpected exception: " << e.what() << RESET

@@ -17,6 +17,13 @@ classDiagram
         +executeForm(form: AForm)
     }
 
+    class Intern {
+        +makeForm(formName: string, target: string) AForm*
+        -createShrubberyCreationForm(target: string) AForm*
+        -createRobotomyRequestForm(target: string) AForm*
+        -createPresidentialPardonForm(target: string) AForm*
+    }
+
     class AForm {
         <<abstract>>
         -const string name_
@@ -71,13 +78,19 @@ classDiagram
         +what() char*
     }
 
+    class FormNotFoundException {
+        +what() char*
+    }
+
     Bureaucrat ..> AForm : executes
+    Intern ..> AForm : creates
     AForm <|-- ShrubberyCreationForm
     AForm <|-- RobotomyRequestForm
     AForm <|-- PresidentialPardonForm
     AForm *-- GradeTooHighException
     AForm *-- GradeTooLowException
     AForm *-- FormNotSignedException
+    Intern *-- FormNotFoundException
 
     note for ShrubberyCreationForm "SIGN_GRADE = 145\nEXEC_GRADE = 137"
     note for RobotomyRequestForm "SIGN_GRADE = 72\nEXEC_GRADE = 45"
