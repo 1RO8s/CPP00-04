@@ -27,10 +27,8 @@ class Form {
   int getGradeRequiredToSign() const;
   int getGradeRequiredToExecute() const;
 
-  // Member functions
   void beSigned(const Bureaucrat& bureaucrat);
 
-  // Exception classes
   class GradeTooHighException : public std::exception {
    public:
     virtual const char* what() const throw();
@@ -42,7 +40,6 @@ class Form {
   };
 };
 
-// Stream operator overload
 std::ostream& operator<<(std::ostream& os, const Form& form);
 
 #endif 

@@ -4,17 +4,15 @@
 #include "Form.hpp"
 
 // 色のための定数
-#define RESET   "\033[0m"
-#define RED     "\033[31m"
-#define GREEN   "\033[32m"
-#define BLUE    "\033[34m"
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define BLUE "\033[34m"
 
 // テスト結果出力用の関数
 void printTestResult(const std::string& testName, bool success) {
-  std::cout << (success ? BLUE : RED)
-            << "[ " << (success ? "OK" : "KO") << " ] "
-            << testName
-            << RESET << std::endl;
+  std::cout << (success ? BLUE : RED) << "[ " << (success ? "OK" : "KO")
+            << " ] " << testName << RESET << std::endl;
 }
 
 void testFormConstruction() {
@@ -57,7 +55,8 @@ void testFormSigning() {
   std::cout << "\nTrying to sign with exact required grade:" << std::endl;
   mediumGrade.signForm(form);
 
-  std::cout << "\nTrying to sign already signed form with high grade:" << std::endl;
+  std::cout << "\nTrying to sign already signed form with high grade:"
+            << std::endl;
   highGrade.signForm(form);
 
   std::cout << "\nFinal state:" << std::endl;
@@ -90,7 +89,8 @@ int main() {
       std::cout << normal << std::endl;
       printTestResult("Normal constructor test", true);
     } catch (const std::exception& e) {
-      std::cout << RED << "Unexpected exception: " << e.what() << RESET << std::endl;
+      std::cout << RED << "Unexpected exception: " << e.what() << RESET
+                << std::endl;
       printTestResult("Normal constructor test", false);
     }
 
@@ -103,7 +103,8 @@ int main() {
       std::cout << "After:  " << high << std::endl;
       printTestResult("Increment test", high.getGrade() == 1);
     } catch (const std::exception& e) {
-      std::cout << RED << "Unexpected exception: " << e.what() << RESET << std::endl;
+      std::cout << RED << "Unexpected exception: " << e.what() << RESET
+                << std::endl;
       printTestResult("Increment test", false);
     }
 
@@ -116,12 +117,14 @@ int main() {
       std::cout << "After:  " << low << std::endl;
       printTestResult("Decrement test", low.getGrade() == 150);
     } catch (const std::exception& e) {
-      std::cout << RED << "Unexpected exception: " << e.what() << RESET << std::endl;
+      std::cout << RED << "Unexpected exception: " << e.what() << RESET
+                << std::endl;
       printTestResult("Decrement test", false);
     }
 
     // コンストラクタ例外テスト - 等級が高すぎる
-    std::cout << "\n=== Too high exception test on constructor ===" << std::endl;
+    std::cout << "\n=== Too high exception test on constructor ==="
+              << std::endl;
     bool caughtHighException = false;
     try {
       Bureaucrat tooHigh("TooHigh", 0);
@@ -173,7 +176,8 @@ int main() {
     testFormCopy();
 
   } catch (const std::exception& e) {
-    std::cout << RED << "Unexpected exception: " << e.what() << RESET << std::endl;
+    std::cout << RED << "Unexpected exception: " << e.what() << RESET
+              << std::endl;
     return 1;
   }
 
