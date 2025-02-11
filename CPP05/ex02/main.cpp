@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -16,72 +15,6 @@
 void printTestResult(const std::string& testName, bool success) {
   std::cout << (success ? BLUE : RED) << "[ " << (success ? "OK" : "KO")
             << " ] " << testName << RESET << std::endl;
-}
-
-void testFormConstruction() {
-  std::cout << "\n=== Form Construction Tests ===" << std::endl;
-  try {
-    Form validForm("Valid Form", 100, 100);
-    std::cout << validForm << std::endl;
-  } catch (std::exception& e) {
-    std::cout << "Exception: " << e.what() << std::endl;
-  }
-
-  try {
-    Form invalidForm("Too High Grade", 0, 100);  // Should throw
-    std::cout << invalidForm << std::endl;
-  } catch (std::exception& e) {
-    std::cout << "Exception: " << e.what() << std::endl;
-  }
-
-  try {
-    Form invalidForm("Too Low Grade", 151, 100);  // Should throw
-    std::cout << invalidForm << std::endl;
-  } catch (std::exception& e) {
-    std::cout << "Exception: " << e.what() << std::endl;
-  }
-}
-
-void testFormSigning() {
-  std::cout << "\n=== Form Signing Tests ===" << std::endl;
-  Form form("Important Form", 50, 30);
-  Bureaucrat highGrade("High Grade Bob", 1);
-  Bureaucrat mediumGrade("Medium Grade Jim", 50);
-  Bureaucrat lowGrade("Low Grade Joe", 150);
-
-  std::cout << "\nInitial state:" << std::endl;
-  std::cout << form << std::endl;
-
-  std::cout << "\nTrying to sign with low grade:" << std::endl;
-  lowGrade.signForm(form);
-
-  std::cout << "\nTrying to sign with exact required grade:" << std::endl;
-  mediumGrade.signForm(form);
-
-  std::cout << "\nTrying to sign already signed form with high grade:"
-            << std::endl;
-  highGrade.signForm(form);
-
-  std::cout << "\nFinal state:" << std::endl;
-  std::cout << form << std::endl;
-}
-
-void testFormCopy() {
-  std::cout << "\n=== Form Copy Tests ===" << std::endl;
-  Form original("Original Form", 75, 50);
-  Bureaucrat bureaucrat("Bob", 70);
-
-  std::cout << "Original form:" << std::endl;
-  std::cout << original << std::endl;
-
-  Form copy = original;
-  std::cout << "\nCopied form:" << std::endl;
-  std::cout << copy << std::endl;
-
-  bureaucrat.signForm(copy);
-  std::cout << "\nAfter signing copy:" << std::endl;
-  std::cout << "Original: " << std::endl << original << std::endl;
-  std::cout << "Copy: " << std::endl << copy << std::endl;
 }
 
 void testShrubberyCreationForm() {
@@ -246,9 +179,6 @@ int main() {
     }
     printTestResult("Decrement exception test", caughtDecrementException);
 
-    testFormConstruction();
-    testFormSigning();
-    testFormCopy();
     testShrubberyCreationForm();
     testRobotomyRequestForm();
     testPresidentialPardonForm();
