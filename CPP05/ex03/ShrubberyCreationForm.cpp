@@ -31,15 +31,16 @@ void* ShrubberyCreationForm::executeAction() const {
   }
 
   // ASCII art tree
-  ofs << "       _-_" << std::endl;
-  ofs << "    /~~   ~~\\" << std::endl;
-  ofs << " /~~         ~~\\" << std::endl;
-  ofs << "{               }" << std::endl;
-  ofs << " \\  _-     -_  /" << std::endl;
-  ofs << "   ~  \\\\ //  ~" << std::endl;
-  ofs << "_- -   | | _- _" << std::endl;
-  ofs << "  _ -  | |   -_" << std::endl;
-  ofs << "      // \\\\" << std::endl;
+  ofs << "       /\\  " << std::endl;
+  ofs << "      /**\\  " << std::endl;
+  ofs << "     /****\\  " << std::endl;
+  ofs << "    /******\\  " << std::endl;
+  ofs << "   /********\\  " << std::endl;
+  ofs << "  /**********\\  " << std::endl;
+  ofs << " /************\\  " << std::endl;
+  ofs << "/**************\\  " << std::endl;
+  ofs << "       |||  " << std::endl;
+  ofs << "       |||  " << std::endl;
 
   ofs.close();
   return NULL;

@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 
 #include "Bureaucrat.hpp"
@@ -137,6 +138,46 @@ void testIntern() {
   }
 }
 
+void testFormExecuteActions() {
+  std::cout << "\n=== Form Execute Actions Tests ===" << std::endl;
+
+  try {
+    // ShrubberyCreationFormのテスト
+    std::cout << "\nTesting ShrubberyCreationForm's execute action:"
+              << std::endl;
+    ShrubberyCreationForm scf("test_garden");
+    Bureaucrat high("Executive", 1);
+    high.signForm(scf);
+    high.executeForm(scf);
+    // ファイルが作成されたかチェック
+    std::ifstream file("test_garden_shrubbery");
+    if (file.good()) {
+      std::cout << "Successfully created shrubbery file" << std::endl;
+    }
+    file.close();
+
+    // RobotomyRequestFormのテスト
+    std::cout << "\nTesting RobotomyRequestForm's execute action:" << std::endl;
+    RobotomyRequestForm rrf("test_subject");
+    high.signForm(rrf);
+    std::cout << "Testing multiple robotomy attempts to verify randomness:"
+              << std::endl;
+    for (int i = 0; i < 10; ++i) {
+      high.executeForm(rrf);
+    }
+
+    // PresidentialPardonFormのテスト
+    std::cout << "\nTesting PresidentialPardonForm's execute action:"
+              << std::endl;
+    PresidentialPardonForm ppf("test_criminal");
+    high.signForm(ppf);
+    high.executeForm(ppf);
+
+  } catch (std::exception& e) {
+    std::cout << "Exception: " << e.what() << std::endl;
+  }
+}
+
 int main() {
   try {
     std::cout << "=== Constructor Test (Normal) ===" << std::endl;
@@ -232,6 +273,7 @@ int main() {
     testPresidentialPardonForm();
 
     testIntern();
+    testFormExecuteActions();
 
   } catch (const std::exception& e) {
     std::cout << RED << "Unexpected exception: " << e.what() << RESET
