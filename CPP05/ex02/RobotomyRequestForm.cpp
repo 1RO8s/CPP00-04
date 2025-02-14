@@ -6,7 +6,7 @@
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
     : AForm("Robotomy Request", SIGN_GRADE, EXEC_GRADE), target_(target) {
-  std::srand(std::time(NULL));  // 乱数の初期化
+  std::srand(std::time(NULL));
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)

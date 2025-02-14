@@ -26,7 +26,6 @@ Form::Form(const Form& other)
 Form& Form::operator=(const Form& other) {
   if (this != &other) {
     isSigned_ = other.isSigned_;
-    // const メンバは代入できないのでスキップ
   }
   return *this;
 }

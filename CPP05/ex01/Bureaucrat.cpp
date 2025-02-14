@@ -15,7 +15,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
   if (this != &other) {
-    // name_はconstなのでコピーできない
     this->grade_ = other.grade_;
   }
   return *this;
