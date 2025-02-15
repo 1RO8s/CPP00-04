@@ -1,6 +1,8 @@
 NAME	= a.out
-SRCS	= main.cpp Bureaucrat.cpp
-HEADERS = Bureaucrat.hpp
+SRCS	= main.cpp \
+		  Bureaucrat.cpp \
+		  Form.cpp
+HEADERS = $(SRCS:.cpp=.hpp)
 OBJS	= $(SRCS:.cpp=.o)
 CC		= c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors

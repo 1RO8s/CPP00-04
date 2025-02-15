@@ -61,4 +61,4 @@ std::ostream& operator<<(std::ostream& os, const Form& form) {
      << "Grade required to sign: " << form.getGradeRequiredToSign() << std::endl
      << "Grade required to execute: " << form.getGradeRequiredToExecute();
   return os;
-} 
+}
