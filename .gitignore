@@ -1,6 +1,34 @@
 *.o
 settings.json
+test.sh
+*.subject.pdf
+.DS_Store
+
 # CPP00
 megaphone
 phoneBook
 account
+CPP00/ex02/
+
+# CPP01
+zombies
+newZombie
+zombieHorde
+brain
+violence
+CPP01/ex04/sed
+CPP01/ex04/inputFile
+CPP01/ex04/inputFile.replace
+harl2.0
+harlFilter
+
+# CPP02
+output.txt
+result.txt
+a.out
+
+# CPP05
+a.out
+*_shrubbery
+
+subject.txt 
