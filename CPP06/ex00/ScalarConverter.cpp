@@ -91,7 +91,7 @@ void ScalarConverter::convert(const std::string& literal) {
         }
 
         // float
-        if (value > std::numeric_limits<float>::max() || value < std::numeric_limits<float>::lowest()) {
+        if (value > std::numeric_limits<float>::max() || value < std::numeric_limits<float>::max() * -1) {
             std::cout << "float: impossible" << std::endl;
         } else {
             std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
