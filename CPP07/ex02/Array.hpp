@@ -11,12 +11,12 @@ class Array {
   size_t size_;
 
  public:
-  Array() : elements_(nullptr), size_(0) {}
+  Array() : elements_(NULL), size_(0) {}
 
   // サイズを指定するコンストラクタ
   Array(unsigned int n) : elements_(new T[n]()), size_(n) {}
 
-  Array(const Array& other) : elements_(nullptr), size_(0) {
+  Array(const Array& other) : elements_(NULL), size_(0) {
     *this = other;
   }
 
