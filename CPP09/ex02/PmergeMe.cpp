@@ -97,9 +97,39 @@ void PmergeMe::displayResults() const {
 }
 
 // vector用のバイナリ挿入関数
+/**
+ * @brief 配列に要素をバイナリ挿入（二分探索挿入）する関数
+ * 
+ * 二分探索アルゴリズムを使用して、ソート済み配列内の正しい位置に新しい要素を挿入します。
+ * この関数は再帰的に動作し、挿入位置を対数時間で特定します。
+ * 
+ * @param arr   挿入先の配列（std::vector<int>）
+ * @param val   挿入する値
+ * @param start 探索範囲の開始インデックス（初期呼び出しでは通常0）
+ * @param end   探索範囲の終了インデックス（初期呼び出しでは通常arr.size()-1）
+ * 
+ * @details
+ * - 基底ケース: start >= endの場合、現在のstartインデックスの位置に
+ *   新しい要素を挿入します（値の比較に基づいて位置を微調整）
+ * - 再帰ケース: 探索範囲の中間点を計算し、中間点の値と挿入値を比較して
+ *   探索範囲を半分に絞り込み、再帰的に処理を続けます
+ * 
+ * @time O(log n) - 位置の特定
+ * @space O(log n) - 再帰呼び出しのスタック
+ * 
+ * @note 挿入操作自体は位置を特定した後にO(n)の時間がかかりますが、
+ *       位置の特定は効率的に行われます
+ */
 void PmergeMe::binaryInsert(std::vector<int>& arr, int val, int start, int end) {
     if (start >= end) {
-        arr.insert(arr.begin() + start + (arr[start] < val), val);
+        // 挿入位置の決定
+        if (arr[start] < val) {
+            // 現在の要素より大きい場合、その要素の後ろに挿入
+            arr.insert(arr.begin() + start + 1, val);
+        } else {
+            // 現在の要素以下の場合、その要素の前に挿入
+            arr.insert(arr.begin() + start, val);
+        }
         return;
     }
     
@@ -113,9 +143,39 @@ void PmergeMe::binaryInsert(std::vector<int>& arr, int val, int start, int end) 
 }
 
 // deque用のバイナリ挿入関数
+/**
+ * @brief 配列に要素をバイナリ挿入（二分探索挿入）する関数
+ * 
+ * 二分探索アルゴリズムを使用して、ソート済み配列内の正しい位置に新しい要素を挿入します。
+ * この関数は再帰的に動作し、挿入位置を対数時間で特定します。
+ * 
+ * @param arr   挿入先の配列（std::deque<int>）
+ * @param val   挿入する値
+ * @param start 探索範囲の開始インデックス（初期呼び出しでは通常0）
+ * @param end   探索範囲の終了インデックス（初期呼び出しでは通常arr.size()-1）
+ * 
+ * @details
+ * - 基底ケース: start >= endの場合、現在のstartインデックスの位置に
+ *   新しい要素を挿入します（値の比較に基づいて位置を微調整）
+ * - 再帰ケース: 探索範囲の中間点を計算し、中間点の値と挿入値を比較して
+ *   探索範囲を半分に絞り込み、再帰的に処理を続けます
+ * 
+ * @time O(log n) - 位置の特定
+ * @space O(log n) - 再帰呼び出しのスタック
+ * 
+ * @note 挿入操作自体は位置を特定した後にO(n)の時間がかかりますが、
+ *       位置の特定は効率的に行われます
+ */
 void PmergeMe::binaryInsert(std::deque<int>& arr, int val, int start, int end) {
     if (start >= end) {
-        arr.insert(arr.begin() + start + (arr[start] < val), val);
+        // 挿入位置の決定
+        if (arr[start] < val) {
+            // 現在の要素より大きい場合、その要素の後ろに挿入
+            arr.insert(arr.begin() + start + 1, val);
+        } else {
+            // 現在の要素以下の場合、その要素の前に挿入
+            arr.insert(arr.begin() + start, val);
+        }
         return;
     }
     
@@ -129,6 +189,24 @@ void PmergeMe::binaryInsert(std::deque<int>& arr, int val, int start, int end) {
 }
 
 // マージ挿入ソート vector版
+/**
+ * @brief マージ挿入ソート（Ford-Johnsonアルゴリズム）のvector実装
+ * 
+ * このアルゴリズムは以下のステップで動作します：
+ * 1. 要素をペアに分割し、各ペア内で大小関係を決定
+ * 2. 各ペアの大きい方の要素で「主リスト」を作成
+ * 3. 主リストを再帰的にマージ挿入ソートでソート
+ * 4. 各ペアの小さい方の要素（「補助リスト」）をバイナリ挿入で主リストに挿入
+ * 5. 奇数個の要素がある場合、余った要素も正しい位置に挿入
+ * 
+ * @param arr ソートする配列（std::vector<int>）
+ * 
+ * @details マージ挿入ソートは理論的に最適に近い比較回数でソートが可能です。
+ * 特に、比較操作が高コストな場合に効果的です。
+ * 
+ * @time 約 nlog(n) - nlog(log(n)) + O(n)の比較回数
+ * @space O(n) - 追加の配列が必要
+ */
 void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
     if (arr.size() <= 1) {
         return;
@@ -188,6 +266,25 @@ void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
 }
 
 // マージ挿入ソート deque版
+/**
+ * @brief マージ挿入ソート（Ford-Johnsonアルゴリズム）のdeque実装
+ * 
+ * このアルゴリズムは以下のステップで動作します：
+ * 1. 要素をペアに分割し、各ペア内で大小関係を決定
+ * 2. 各ペアの大きい方の要素で「主リスト」を作成
+ * 3. 主リストを再帰的にマージ挿入ソートでソート
+ * 4. 各ペアの小さい方の要素（「補助リスト」）をバイナリ挿入で主リストに挿入
+ * 5. 奇数個の要素がある場合、余った要素も正しい位置に挿入
+ * 
+ * @param arr ソートする配列（std::deque<int>）
+ * 
+ * @details マージ挿入ソートは理論的に最適に近い比較回数でソートが可能です。
+ * 特に、比較操作が高コストな場合に効果的です。
+ * vector実装との性能比較のために実装されています。
+ * 
+ * @time 約 nlog(n) - nlog(log(n)) + O(n)の比較回数
+ * @space O(n) - 追加の配列が必要
+ */
 void PmergeMe::mergeInsertSortDeq(std::deque<int>& arr) {
     if (arr.size() <= 1) {
         return;

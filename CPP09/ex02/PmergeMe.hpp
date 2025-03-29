@@ -17,11 +17,35 @@
 class PmergeMe {
 private:
     // vector実装
+    /**
+     * @brief マージ挿入ソート（Ford-Johnsonアルゴリズム）のvector実装
+     * @param arr ソートする配列
+     */
     void mergeInsertSortVec(std::vector<int>& arr);
+    
+    /**
+     * @brief 配列に要素をバイナリ挿入する関数（vector用）
+     * @param arr 挿入先の配列
+     * @param val 挿入する値
+     * @param start 探索範囲の開始インデックス
+     * @param end 探索範囲の終了インデックス
+     */
     void binaryInsert(std::vector<int>& arr, int val, int start, int end);
     
     // deque実装
+    /**
+     * @brief マージ挿入ソート（Ford-Johnsonアルゴリズム）のdeque実装
+     * @param arr ソートする配列
+     */
     void mergeInsertSortDeq(std::deque<int>& arr);
+    
+    /**
+     * @brief 配列に要素をバイナリ挿入する関数（deque用）
+     * @param arr 挿入先の配列
+     * @param val 挿入する値
+     * @param start 探索範囲の開始インデックス
+     * @param end 探索範囲の終了インデックス
+     */
     void binaryInsert(std::deque<int>& arr, int val, int start, int end);
 
     std::vector<int> _vec;
