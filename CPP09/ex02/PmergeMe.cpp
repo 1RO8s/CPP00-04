@@ -22,7 +22,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 
 PmergeMe::~PmergeMe() {}
 
-// 引数の解析と処理
+// 入力チェック
 void PmergeMe::parseArgs(int argc, char** argv) {
     if (argc <= 1) {
         throw std::invalid_argument("引数が足りません。正の整数のシーケンスを入力してください。");
@@ -72,14 +72,14 @@ void PmergeMe::sort() {
 
 // 結果の表示
 void PmergeMe::displayResults() const {
-    // 元のシーケンスを表示
+    // 入力シーケンスを表示
     std::cout << "Before: ";
     for (size_t i = 0; i < _originalSequence.size(); i++) {
         std::cout << _originalSequence[i] << " ";
     }
     std::cout << std::endl;
     
-    // ソート後のシーケンスを表示
+    // ソート済シーケンスを表示
     std::cout << "After: ";
     for (size_t i = 0; i < _vec.size(); i++) {
         std::cout << _vec[i] << " ";
@@ -242,7 +242,7 @@ void PmergeMe::recursiveSortDeq(std::deque<int>& arr) {
     arr = merge(left, right);
 }
 
-// Ford-Johnsonアルゴリズム（マージ挿入ソート）- vector実装
+// マージ挿入ソート vector版
 void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
     if (arr.size() <= 1) {
         return;
@@ -265,7 +265,7 @@ void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
         }
     }
     
-    // ステップ2: ペアの大きい方をソート
+    // 主リストをソート
     std::vector<int> largerElements;
     for (size_t i = 0; i < pairs.size(); i++) {
         largerElements.push_back(pairs[i].first);
@@ -273,19 +273,19 @@ void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
     
     recursiveSortVec(largerElements);
     
-    // ステップ3: ソートされた大きい要素から新しい配列を構築
+    // 主リストを元に新しい配列を構築
     arr.clear();
     for (size_t i = 0; i < largerElements.size(); i++) {
         arr.push_back(largerElements[i]);
     }
     
-    // ステップ4: 小さい要素を挿入
+    // 補助リストを挿入
     // 最初のペアの小さい方は常に最初に挿入
     if (!pairs.empty()) {
         arr.insert(arr.begin(), pairs[0].second);
     }
     
-    // 残りの小さい要素をバイナリ挿入
+    // 残りの補助リストを完全二分木で挿入
     for (size_t i = 1; i < pairs.size(); i++) {
         int element = pairs[i].second;
         if (arr.empty()) {
@@ -305,13 +305,13 @@ void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
     }
 }
 
-// Ford-Johnsonアルゴリズム（マージ挿入ソート）- deque実装
+// マージ挿入ソート deque版
 void PmergeMe::mergeInsertSortDeq(std::deque<int>& arr) {
     if (arr.size() <= 1) {
         return;
     }
     
-    // ステップ1: 要素をペアに分ける
+    // 要素をペアに分ける
     std::deque<std::pair<int, int> > pairs;
     bool hasOdd = false;
     int oddElement = 0;
@@ -328,7 +328,7 @@ void PmergeMe::mergeInsertSortDeq(std::deque<int>& arr) {
         }
     }
     
-    // ステップ2: ペアの大きい方をソート
+    // 主リスト（大きい方）をソート
     std::deque<int> largerElements;
     for (size_t i = 0; i < pairs.size(); i++) {
         largerElements.push_back(pairs[i].first);
@@ -336,19 +336,19 @@ void PmergeMe::mergeInsertSortDeq(std::deque<int>& arr) {
     
     recursiveSortDeq(largerElements);
     
-    // ステップ3: ソートされた大きい要素から新しい配列を構築
+    // 主リストをクリアして新しい配列を構築
     arr.clear();
     for (size_t i = 0; i < largerElements.size(); i++) {
         arr.push_back(largerElements[i]);
     }
     
-    // ステップ4: 小さい要素を挿入
+    // 補助リストを挿入
     // 最初のペアの小さい方は常に最初に挿入
     if (!pairs.empty()) {
         arr.insert(arr.begin(), pairs[0].second);
     }
     
-    // 残りの小さい要素をバイナリ挿入
+    // 残りの補助リストを完全二分木で挿入　
     for (size_t i = 1; i < pairs.size(); i++) {
         int element = pairs[i].second;
         if (arr.empty()) {

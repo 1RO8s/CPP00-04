@@ -16,17 +16,6 @@
 
 class PmergeMe {
 private:
-    std::vector<int> _vec;
-    std::deque<int> _deq;
-    
-    // 元の入力シーケンス
-    std::vector<int> _originalSequence;
-    
-    // 時間測定用
-    double _vecSortTime;
-    double _deqSortTime;
-    
-    // Ford-Johnsonアルゴリズム（マージ挿入ソート）のヘルパー関数
     // vector実装
     void mergeInsertSortVec(std::vector<int>& arr);
     void recursiveSortVec(std::vector<int>& arr);
@@ -38,8 +27,12 @@ private:
     void recursiveSortDeq(std::deque<int>& arr);
     std::deque<int> merge(const std::deque<int>& left, const std::deque<int>& right);
     void binaryInsert(std::deque<int>& arr, int val, int start, int end);
-    
-    // 時間計測用
+
+    std::vector<int> _vec;
+    std::deque<int> _deq;
+    std::vector<int> _originalSequence;
+    double _vecSortTime;
+    double _deqSortTime;
     double getTimeInMicroseconds();
     
 public:
@@ -48,16 +41,10 @@ public:
     PmergeMe& operator=(const PmergeMe& other);
     ~PmergeMe();
     
-    // 引数の解析と処理
     void parseArgs(int argc, char** argv);
-    
-    // ソートの実行
     void sort();
-    
-    // 結果の表示
     void displayResults() const;
-    
-    // ゲッター
+
     const std::vector<int>& getOriginalSequence() const;
     const std::vector<int>& getSortedVec() const;
     const std::deque<int>& getSortedDeq() const;
@@ -65,4 +52,4 @@ public:
     double getDeqSortTime() const;
 };
 
-#endif // PMERGEME_HPP 
+#endif
