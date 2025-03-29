@@ -18,14 +18,10 @@ class PmergeMe {
 private:
     // vector実装
     void mergeInsertSortVec(std::vector<int>& arr);
-    void recursiveSortVec(std::vector<int>& arr);
-    std::vector<int> merge(const std::vector<int>& left, const std::vector<int>& right);
     void binaryInsert(std::vector<int>& arr, int val, int start, int end);
     
     // deque実装
     void mergeInsertSortDeq(std::deque<int>& arr);
-    void recursiveSortDeq(std::deque<int>& arr);
-    std::deque<int> merge(const std::deque<int>& left, const std::deque<int>& right);
     void binaryInsert(std::deque<int>& arr, int val, int start, int end);
 
     std::vector<int> _vec;

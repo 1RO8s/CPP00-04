@@ -96,64 +96,6 @@ void PmergeMe::displayResults() const {
               << _deqSortTime << " us" << std::endl;
 }
 
-// vector用のマージ関数
-std::vector<int> PmergeMe::merge(const std::vector<int>& left, const std::vector<int>& right) {
-    std::vector<int> result;
-    size_t leftIdx = 0, rightIdx = 0;
-    
-    while (leftIdx < left.size() && rightIdx < right.size()) {
-        if (left[leftIdx] <= right[rightIdx]) {
-            result.push_back(left[leftIdx]);
-            leftIdx++;
-        } else {
-            result.push_back(right[rightIdx]);
-            rightIdx++;
-        }
-    }
-    
-    // 残りの要素を追加
-    while (leftIdx < left.size()) {
-        result.push_back(left[leftIdx]);
-        leftIdx++;
-    }
-    
-    while (rightIdx < right.size()) {
-        result.push_back(right[rightIdx]);
-        rightIdx++;
-    }
-    
-    return result;
-}
-
-// deque用のマージ関数
-std::deque<int> PmergeMe::merge(const std::deque<int>& left, const std::deque<int>& right) {
-    std::deque<int> result;
-    size_t leftIdx = 0, rightIdx = 0;
-    
-    while (leftIdx < left.size() && rightIdx < right.size()) {
-        if (left[leftIdx] <= right[rightIdx]) {
-            result.push_back(left[leftIdx]);
-            leftIdx++;
-        } else {
-            result.push_back(right[rightIdx]);
-            rightIdx++;
-        }
-    }
-    
-    // 残りの要素を追加
-    while (leftIdx < left.size()) {
-        result.push_back(left[leftIdx]);
-        leftIdx++;
-    }
-    
-    while (rightIdx < right.size()) {
-        result.push_back(right[rightIdx]);
-        rightIdx++;
-    }
-    
-    return result;
-}
-
 // vector用のバイナリ挿入関数
 void PmergeMe::binaryInsert(std::vector<int>& arr, int val, int start, int end) {
     if (start >= end) {
@@ -186,62 +128,6 @@ void PmergeMe::binaryInsert(std::deque<int>& arr, int val, int start, int end) {
     }
 }
 
-// vector用の再帰的ソート関数
-void PmergeMe::recursiveSortVec(std::vector<int>& arr) {
-    size_t size = arr.size();
-    
-    if (size <= 1) {
-        return;
-    }
-    
-    // 配列を2つに分割
-    std::vector<int> left;
-    std::vector<int> right;
-    
-    for (size_t i = 0; i < size / 2; i++) {
-        left.push_back(arr[i]);
-    }
-    
-    for (size_t i = size / 2; i < size; i++) {
-        right.push_back(arr[i]);
-    }
-    
-    // 再帰的にソート
-    recursiveSortVec(left);
-    recursiveSortVec(right);
-    
-    // マージ
-    arr = merge(left, right);
-}
-
-// deque用の再帰的ソート関数
-void PmergeMe::recursiveSortDeq(std::deque<int>& arr) {
-    size_t size = arr.size();
-    
-    if (size <= 1) {
-        return;
-    }
-    
-    // 配列を2つに分割
-    std::deque<int> left;
-    std::deque<int> right;
-    
-    for (size_t i = 0; i < size / 2; i++) {
-        left.push_back(arr[i]);
-    }
-    
-    for (size_t i = size / 2; i < size; i++) {
-        right.push_back(arr[i]);
-    }
-    
-    // 再帰的にソート
-    recursiveSortDeq(left);
-    recursiveSortDeq(right);
-    
-    // マージ
-    arr = merge(left, right);
-}
-
 // マージ挿入ソート vector版
 void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
     if (arr.size() <= 1) {
@@ -265,13 +151,14 @@ void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
         }
     }
     
-    // 主リストをソート
+    // 主リストの作成
     std::vector<int> largerElements;
     for (size_t i = 0; i < pairs.size(); i++) {
         largerElements.push_back(pairs[i].first);
     }
     
-    recursiveSortVec(largerElements);
+    // 主リストをソート（再帰的にマージ挿入ソートを適用）
+    mergeInsertSortVec(largerElements);
     
     // 主リストを元に新しい配列を構築
     arr.clear();
@@ -280,13 +167,8 @@ void PmergeMe::mergeInsertSortVec(std::vector<int>& arr) {
     }
     
     // 補助リストを挿入
-    // 最初のペアの小さい方は常に最初に挿入
-    if (!pairs.empty()) {
-        arr.insert(arr.begin(), pairs[0].second);
-    }
-    
-    // 残りの補助リストを完全二分木で挿入
-    for (size_t i = 1; i < pairs.size(); i++) {
+    // すべての要素をバイナリ挿入で正しい位置に挿入
+    for (size_t i = 0; i < pairs.size(); i++) {
         int element = pairs[i].second;
         if (arr.empty()) {
             arr.push_back(element);
@@ -328,28 +210,24 @@ void PmergeMe::mergeInsertSortDeq(std::deque<int>& arr) {
         }
     }
     
-    // 主リスト（大きい方）をソート
+    // 主リストの作成
     std::deque<int> largerElements;
     for (size_t i = 0; i < pairs.size(); i++) {
         largerElements.push_back(pairs[i].first);
     }
     
-    recursiveSortDeq(largerElements);
+    // 主リストをソート（再帰的にマージ挿入ソートを適用）
+    mergeInsertSortDeq(largerElements);
     
-    // 主リストをクリアして新しい配列を構築
+    // 主リストを元に新しい配列を構築
     arr.clear();
     for (size_t i = 0; i < largerElements.size(); i++) {
         arr.push_back(largerElements[i]);
     }
     
     // 補助リストを挿入
-    // 最初のペアの小さい方は常に最初に挿入
-    if (!pairs.empty()) {
-        arr.insert(arr.begin(), pairs[0].second);
-    }
-    
-    // 残りの補助リストを完全二分木で挿入　
-    for (size_t i = 1; i < pairs.size(); i++) {
+    // すべての要素をバイナリ挿入で正しい位置に挿入
+    for (size_t i = 0; i < pairs.size(); i++) {
         int element = pairs[i].second;
         if (arr.empty()) {
             arr.push_back(element);
